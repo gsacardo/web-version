@@ -14,7 +14,7 @@ Siga estas etapas para configurar o projeto em seu ambiente local:
 1. Clone o repositório:
 
    ```sh
-   git clone https://github.com/username/nome-do-repositorio.git
+   git clone https://github.com/gsacardo/web-version.git
 
 2. Navegue até o diretório do projeto:
     ```sh
