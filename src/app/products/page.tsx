@@ -1,7 +1,8 @@
 "use client";
 import { ThemeSwitcher } from "@/components/ToogleButton/ToogleTheme";
 import { LuClipboardList, LuPencil, LuPlus, LuTrash2 } from "react-icons/lu";
-import "devextreme/dist/css/dx.light.css";
+import 'devextreme/dist/css/dx.dark.css';
+import 'devextreme/dist/css/dx.light.css';
 
 
 import { useEffect, useState } from "react";
@@ -23,6 +24,7 @@ import {
   Selection,
 } from "devextreme-react/cjs/data-grid";
 import ModalProduct from "@/components/ModalProduct/ModalProduct";
+import { useTheme } from "next-themes";
 
 export interface Product {
   id: string;
@@ -37,7 +39,7 @@ export interface Product {
 export default function ProductsPage() {
   const [products, setProducts] = useState<Product[]>([]);
   const [addProduct, setAddProduct] = useState(false);
-  const [selectedProduct, setSelectedProduct] = useState([]);  
+  const [selectedProduct, setSelectedProduct] = useState([]);
 
   useEffect(() => {
     const unsubscribe = onSnapshot(
@@ -120,6 +122,7 @@ export default function ProductsPage() {
               />
             </div>
           </div>
+
           <DataGrid
             id="grid"
             dataSource={products}
@@ -164,6 +167,7 @@ export default function ProductsPage() {
               showNavigationButtons={true}
             />
           </DataGrid>
+
         </div>
 
         {addProduct ? <ModalProduct open={() => setAddProduct(!addProduct)} editing={selectedProduct} /> : null}
