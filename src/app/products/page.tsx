@@ -3,6 +3,7 @@ import { ThemeSwitcher } from "@/components/ToogleButton/ToogleTheme";
 import { LuClipboardList, LuPencil, LuPlus, LuTrash2 } from "react-icons/lu";
 import "devextreme/dist/css/dx.light.css";
 
+
 import { useEffect, useState } from "react";
 import {
   collection,
@@ -65,16 +66,21 @@ export default function ProductsPage() {
   };
 
   const handleDelete = () => {
+    const userConfirmed = window.confirm('Você tem certeza que deseja excluir o produto?');
     if (selectedProduct.length === 0) {
       alert("Selecione algum item para excluir");
       return;
     }
-    const docIds = selectedProduct.map((p) => p.id);
-    for (const docId of docIds) {
-      const docRef = doc(db, "products", docId);
-      deleteDoc(docRef);
-    }
 
+    if (userConfirmed) {
+      const docIds = selectedProduct.map((p) => p.id);
+      for (const docId of docIds) {
+        const docRef = doc(db, "products", docId);
+        deleteDoc(docRef);
+      }
+    } else {
+      return;
+    }
   };
 
   return (
@@ -138,16 +144,16 @@ export default function ProductsPage() {
               )}
             />
 
-            <Column dataField="name" caption="Nome" />
-            <Column dataField="notes" caption="Notas" />
+            <Column dataField="name" caption="Nome do Produto" />
+            <Column dataField="notes" caption="Descrição" />
             <Column
               dataField="price"
-              caption="Preço"
-              format={{ currency: "BRL", maximumFractionDigits: 2 }}
+              caption="Valor"
               dataType="number"
+              cellRender={({ value }) => value.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}
             />
             <Column dataField="quantity" caption="Quantidade" />
-            <Column dataField="date" caption="Data" dataType="date" />
+            <Column dataField="date" caption="Data de Cadastro" dataType="date" format="dd/MM/yyyy" />
             <Paging defaultPageSize={10} />
             <Pager
               visible={true}

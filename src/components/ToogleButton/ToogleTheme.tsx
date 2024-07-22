@@ -16,14 +16,7 @@ export function ThemeSwitcher() {
   if (!mounted) return null;
 
   return (
-    // <div>
-    //   <button onClick={() => setTheme("light")}>Light Mode</button>
-    //   <button onClick={() => setTheme("dark")}>Dark Mode</button>
-    //   <Switch defaultSelected aria-label="Automatic updates" />
-
-    //   <LuSun size={32} />
-    // </div>
-
+ 
     <div
       className="relative w-14 h-8 dark:bg-[#1D1D1D] bg-white rounded-full cursor-pointer flex-row flex items-center justify-between gap-2 p-1"
 
